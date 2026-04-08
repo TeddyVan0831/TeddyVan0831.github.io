@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro'
+import BlogCard from '../components/BlogCard.astro'
+
+const blogs = [
+  {
+    title: '12.96 万亿 Token 碾压 3.03 万亿',
+    description: '中国 AI 大模型连续五周超越美国，OpenRouter 数据深度解读。全球总调用量 27 万亿 Token，中国占比 48%，美国仅 11%',
+    date: '2026-04-07',
+    tags: ['AI', '大模型', '数据分析'],
+    link: '#'
+  },
+  {
+    title: '具身智能的"GPT-3 时刻"何时到来？',
+    description: '2026 中关村论坛年会圆桌会议深度解析，五家百亿估值企业创始人观点汇总。行业判断：2025 年是"打基础"的 GPT-2 时代',
+    date: '2026-03-30',
+    tags: ['具身智能', '机器人', 'AI'],
+    link: '#'
+  },
+  {
+    title: 'TRAE SOLO 独立：字节跳动的 Agent 野心',
+    description: '从 IDE 到完整生产力工具，TRAEO SOLO 的产品战略深度分析。两种模式：Code 模式面向开发、Work 模式处理非代码任务',
+    date: '2026-04-02',
+    tags: ['AI Agent', '产品分析', '字节跳动'],
+    link: '#'
+  },
+  {
+    title: '51 万行代码裸奔：Anthropic 的 .map 文件泄露事件',
+    description: 'Anthropic 源码泄露事件深度分析。1906 文件、51.2 万行代码、1800 万美元人力成本，技术栈全揭秘',
+    date: '2026-04-01',
+    tags: ['安全', 'Anthropic', '开源'],
+    link: '#'
+  },
+  {
+    title: 'DeepSeek 服务中断 12 小时复盘',
+    description: '一次宕机事件引发的行业反思。SLA 过度承诺、数据备份缺失、应急响应不足等问题深度分析',
+    date: '2026-03-31',
+    tags: ['AI', '运维', '深度分析'],
+    link: '#'
+  },
+  {
+    title: '谷歌 TurboQuant：1-bit 量化新突破',
+    description: 'PolarQuant 极坐标量化 + QJL 1-bit 误差校正技术解读。精度 99.8% 召回率，显存降低 6 倍，推理加速 2.7-8 倍',
+    date: '2026-03-28',
+    tags: ['算法', '模型优化', '量子化'],
+    link: '#'
+  }
+]
+
+const categories = ['全部', 'AI', '大模型', '算法', '产品分析', '安全', '行业洞察']
+---
+
+<Layout title="博客 | 范俊峰" description="范俊峰的 AI 教育技术博客，包含行业洞察与技术思考">
+  <!-- Hero -->
+  <section class="py-20 px-6 bg-gradient-to-b from-slate-100 to-white dark:from-slate-800 dark:to-slate-900">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl font-bold mb-4">
+        <span class="text-slate-800 dark:text-white">博客</span>
+      </h1>
+      <p class="text-xl text-slate-600 dark:text-slate-300">
+        AI 行业洞察与技术思考
+      </p>
+    </div>
+  </section>
+
+  <!-- 分类筛选 -->
+  <section class="py-8 px-6 border-b border-slate-200 dark:border-slate-800 sticky top-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-40">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-wrap gap-2 justify-center">
+        {categories.map((cat, index) => (
+          <button class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${index === 0 ? 'bg-slate-800 dark:bg-white text-white dark:text-slate-800' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 文章列表 -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {blogs.map((blog) => (
+          <BlogCard {...blog} />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

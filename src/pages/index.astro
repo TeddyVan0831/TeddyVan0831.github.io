@@ -1,0 +1,235 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ProjectCard from '../components/ProjectCard.astro'
+import BlogCard from '../components/BlogCard.astro'
+
+// 项目数据
+const projects = [
+  {
+    title: 'edu-kt-demo',
+    description: '基于知识追踪与知识图谱的智能教育系统，支持多学科自适应学习路径推荐',
+    tech: ['Python', 'PyTorch', 'FastAPI', 'Knowledge Graph', 'DKT/AKT'],
+    link: 'https://github.com/TeddyVan0831/edu-kt-demo',
+    stats: { stars: 128, forks: 34 }
+  },
+  {
+    title: 'AI 教育研究系列',
+    description: '涵盖知识追踪算法、知识图谱构建、教育大模型融合等前沿技术的深度研究',
+    tech: ['LLM Fine-tuning', 'Knowledge Tracing', 'Federated Learning'],
+    link: '/blogs',
+    stats: { stars: 0, forks: 0 }
+  }
+]
+
+// 博客数据
+const blogs = [
+  {
+    title: '12.96 万亿 Token 碾压 3.03 万亿',
+    description: '中国 AI 大模型连续五周超越美国，OpenRouter 数据深度解读',
+    date: '2026-04-07',
+    tags: ['AI', '大模型', '数据分析'],
+    link: '#'
+  },
+  {
+    title: '具身智能的"GPT-3 时刻"何时到来？',
+    description: '2026 中关村论坛年会圆桌会议深度解析，五家百亿估值企业创始人观点汇总',
+    date: '2026-03-30',
+    tags: ['具身智能', '机器人', 'AI'],
+    link: '#'
+  },
+  {
+    title: 'TRAE SOLO 独立：字节跳动的 Agent 野心',
+    description: '从 IDE 到完整生产力工具，TRAE SOLO 的产品战略深度分析',
+    date: '2026-04-02',
+    tags: ['AI Agent', '产品分析', '字节跳动'],
+    link: '#'
+  }
+]
+
+// 研究方向数据
+const researchAreas = [
+  { name: '知识追踪 (KT)', icon: '📊', desc: 'DKT/AKT/Deep-KT 等算法研究' },
+  { name: '知识图谱 (KG)', icon: '🕸️', desc: '教育领域知识结构化与推理' },
+  { name: '教育大模型', icon: '🤖', desc: 'LLM 微调与教育场景融合' },
+  { name: '联邦学习', icon: '🔒', desc: '隐私保护的分布式学习' }
+]
+---
+
+<Layout title="范俊峰 | AI 教育技术研究者">
+  <!-- Hero Section -->
+  <section class="min-h-[85vh] flex items-center justify-center px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
+          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          欢迎访问我的学术主页
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">
+          <span class="text-slate-800 dark:text-white">范俊峰</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-6">
+          AI 教育技术研究者
+        </p>
+        <p class="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          专注于知识追踪算法、知识图谱构建与教育大模型融合研究，探索 AI 在教育领域的创新应用。
+        </p>
+      </div>
+
+      <!-- 统计数据 -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-slate-800 dark:text-white">4+</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">年研究经验</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-slate-800 dark:text-white">10+</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">研究项目</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-slate-800 dark:text-white">5</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">核心研究方向</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-slate-800 dark:text-white">∞</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">学习热情</div>
+        </div>
+      </div>
+
+      <!-- CTA 按钮 -->
+      <div class="flex flex-wrap justify-center gap-4 mt-12">
+        <a href="#about" class="px-6 py-3 bg-slate-800 dark:bg-white text-white dark:text-slate-800 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors">
+          了解更多
+        </a>
+        <a href="/projects" class="px-6 py-3 border border-slate-300 dark:border-slate-600 rounded-lg font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          查看项目
+        </a>
+        <a href="https://github.com/TeddyVan0831" target="_blank" rel="noopener" class="px-6 py-3 border border-slate-300 dark:border-slate-600 rounded-lg font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于我 -->
+  <section id="about" class="py-20 px-6 bg-white dark:bg-slate-800/50">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">
+        <span class="text-slate-800 dark:text-white">关于我</span>
+      </h2>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            我是一名专注于 <strong>AI 教育技术</strong> 的研究者，致力于将人工智能技术应用于教育领域，推动个性化学习的实现。
+          </p>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            当前研究重点包括：基于深度学习的知识追踪算法、教育领域知识图谱构建、大语言模型在教育场景的微调与应用，以及隐私保护的联邦学习方案。
+          </p>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            我相信 AI 技术能够革新教育方式，让每个学习者都能获得适合自己的学习路径和指导。
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-6 text-slate-800 dark:text-white">研究方向</h3>
+          <div class="grid gap-4">
+            {researchAreas.map((area) => (
+              <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg card-hover">
+                <div class="flex items-center gap-3">
+                  <span class="text-2xl">{area.icon}</span>
+                  <div>
+                    <h4 class="font-medium text-slate-800 dark:text-white">{area.name}</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">{area.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技术栈 -->
+  <section class="py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">
+        <span class="text-slate-800 dark:text-white">技术栈</span>
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { name: 'Python', color: 'bg-blue-500' },
+          { name: 'PyTorch', color: 'bg-orange-500' },
+          { name: 'FastAPI', color: 'bg-green-500' },
+          { name: 'Transformers', color: 'bg-yellow-500' },
+          { name: 'Knowledge Graph', color: 'bg-purple-500' },
+          { name: 'LLM Fine-tuning', color: 'bg-pink-500' },
+          { name: 'Streamlit', color: 'bg-red-500' },
+          { name: 'Git & GitHub', color: 'bg-slate-500' }
+        ].map((tech) => (
+          <div class={`px-4 py-3 ${tech.color} text-white rounded-lg text-center font-medium card-hover`}>
+            {tech.name}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 项目展示 -->
+  <section class="py-20 px-6 bg-white dark:bg-slate-800/50">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-4">
+        <span class="text-slate-800 dark:text-white">代表性项目</span>
+      </h2>
+      <p class="text-slate-500 dark:text-slate-400 text-center mb-12">从知识追踪到教育大模型的技术实践</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        {projects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/projects" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium hover:underline">
+          查看全部项目
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最新博客 -->
+  <section class="py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-4">
+        <span class="text-slate-800 dark:text-white">最新文章</span>
+      </h2>
+      <p class="text-slate-500 dark:text-slate-400 text-center mb-12">AI 行业洞察与技术思考</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        {blogs.map((blog) => (
+          <BlogCard {...blog} />
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/blogs" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium hover:underline">
+          阅读更多文章
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系方式 -->
+  <section class="py-20 px-6 bg-slate-800 dark:bg-slate-900">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4 text-white">联系方式</h2>
+      <p class="text-slate-300 mb-8">如果你对 AI 教育技术感兴趣，欢迎交流合作</p>
+      <div class="flex justify-center gap-6">
+        <a href="https://github.com/TeddyVan0831" target="_blank" rel="noopener" class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
