@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="极简技术风预览 | 范俊峰">
+  <!-- 极简技术风格：黑白灰+代码感 -->
+  <div class="min-h-screen bg-black text-white font-mono">
+    <!-- 终端风格 Header -->
+    <header class="border-b border-gray-800 px-6 py-4">
+      <div class="max-w-4xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="text-green-400">~/</span>
+          <span class="text-gray-400">vanem</span>
+          <span class="text-green-400">$</span>
+          <span class="text-gray-500 ml-2">whoami</span>
+        </div>
+        <nav class="flex gap-6 text-sm">
+          <a href="#" class="text-gray-400 hover:text-white">about</a>
+          <a href="#" class="text-gray-400 hover:text-white">projects</a>
+          <a href="#" class="text-gray-400 hover:text-white">blog</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="max-w-4xl mx-auto px-6 py-20">
+      <!-- 终端自我介绍 -->
+      <section class="mb-20">
+        <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
+          <div class="text-gray-500 mb-4">$ cat README.md</div>
+          <pre class="text-green-400 overflow-x-auto">
+# 范俊峰
+AI 教育技术研究者
+------------------------
+$ cat skills.json</pre>
+        </div>
+
+        <!-- 技能列表 -->
+        <div class="mt-8 space-y-4">
+          <div class="flex items-center gap-4">
+            <span class="w-32 text-gray-500">Python</span>
+            <div class="flex-1 bg-gray-800 h-2 rounded">
+              <div class="bg-green-500 h-2 rounded" style="width: 95%"></div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-32 text-gray-500">PyTorch</span>
+            <div class="flex-1 bg-gray-800 h-2 rounded">
+              <div class="bg-green-500 h-2 rounded" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-32 text-gray-500">Knowledge Graph</span>
+            <div class="flex-1 bg-gray-800 h-2 rounded">
+              <div class="bg-green-500 h-2 rounded" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-32 text-gray-500">LLM Fine-tuning</span>
+            <div class="flex-1 bg-gray-800 h-2 rounded">
+              <div class="bg-green-500 h-2 rounded" style="width: 80%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 项目列表（终端风格） -->
+      <section class="mb-20">
+        <h2 class="text-gray-500 mb-6">$ ls -la projects/</h2>
+        <div class="space-y-2 font-mono text-sm">
+          <div class="flex items-center gap-4 p-4 bg-gray-900 border border-gray-800 rounded hover:border-green-500 transition-colors cursor-pointer">
+            <span class="text-yellow-400">drwxr-xr-x</span>
+            <span class="text-blue-400">edu-kt-demo</span>
+            <span class="text-gray-500 ml-auto">知识追踪与知识图谱系统</span>
+          </div>
+          <div class="flex items-center gap-4 p-4 bg-gray-900 border border-gray-800 rounded hover:border-green-500 transition-colors cursor-pointer">
+            <span class="text-yellow-400">drwxr-xr-x</span>
+            <span class="text-blue-400">ai-research</span>
+            <span class="text-gray-500 ml-auto">AI 教育技术研究系列</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 联系方式 -->
+      <section>
+        <h2 class="text-gray-500 mb-6">$ cat contact.txt</h2>
+        <div class="flex gap-6 text-sm">
+          <a href="#" class="text-gray-400 hover:text-green-400 flex items-center gap-2">
+            <span class="text-green-400">→</span> github.com/TeddyVan0831
+          </a>
+          <a href="#" class="text-gray-400 hover:text-green-400 flex items-center gap-2">
+            <span class="text-green-400">→</span> 13810578583@163.com
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="border-t border-gray-800 px-6 py-8">
+      <div class="max-w-4xl mx-auto text-center text-gray-500 text-sm">
+        <span class="text-green-400">$</span> echo $STATUS
+        <div class="mt-2 text-green-400">System online • 2026</div>
+      </div>
+    </footer>
+  </div>
+</Layout>

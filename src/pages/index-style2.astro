@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="淡雅卡片式预览 | 范俊峰">
+  <!-- 淡雅现代风格：柔和配色+流畅动画 -->
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-stone-50">
+    
+    <!-- 简约 Header -->
+    <header class="bg-white/70 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
+      <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-slate-200 to-stone-300 rounded-xl flex items-center justify-center text-slate-700 font-bold text-lg">
+            F
+          </div>
+          <span class="text-xl font-semibold text-slate-700">
+            范俊峰
+          </span>
+        </div>
+        <div class="flex items-center gap-8">
+          <a href="#" class="relative text-slate-500 hover:text-slate-700 font-medium transition-colors group">
+            关于
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-slate-400 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#" class="relative text-slate-500 hover:text-slate-700 font-medium transition-colors group">
+            项目
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-slate-400 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#" class="relative text-slate-500 hover:text-slate-700 font-medium transition-colors group">
+            博客
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-slate-400 group-hover:w-full transition-all duration-300"></span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-28 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-600 rounded-full text-sm font-medium mb-8">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+          在线可约
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-slate-800">
+          范俊峰
+        </h1>
+        <p class="text-2xl text-slate-500 mb-4">
+          AI 教育技术研究者
+        </p>
+        <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          探索知识追踪、知识图谱与大语言模型的融合应用，让 AI 赋能个性化学习
+        </p>
+
+        <!-- CTA 按钮 -->
+        <div class="flex flex-wrap justify-center gap-4">
+          <button class="px-8 py-4 bg-slate-700 text-white rounded-full font-semibold shadow-lg shadow-slate-200 hover:shadow-xl hover:bg-slate-800 transform hover:-translate-y-1 transition-all duration-300">
+            探索项目
+          </button>
+          <button class="px-8 py-4 bg-white text-slate-600 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-slate-200 hover:border-slate-300">
+            联系我
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 研究方向卡片 -->
+    <section class="py-16 px-6 bg-white/50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-4 text-slate-800">研究方向</h2>
+        <p class="text-slate-400 text-center mb-12">聚焦 AI + 教育的交叉领域</p>
+        <div class="grid md:grid-cols-4 gap-6">
+          <!-- 知识追踪 -->
+          <div class="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 border border-gray-100 group">
+            <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-50 transition-colors">
+              📊
+            </div>
+            <h3 class="font-bold text-lg mb-2 text-slate-700">知识追踪</h3>
+            <p class="text-slate-400 text-sm">DKT/AKT/Deep-KT 等算法研究</p>
+          </div>
+          <!-- 知识图谱 -->
+          <div class="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 border border-gray-100 group">
+            <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-amber-50 transition-colors">
+              🕸️
+            </div>
+            <h3 class="font-bold text-lg mb-2 text-slate-700">知识图谱</h3>
+            <p class="text-slate-400 text-sm">教育领域知识结构化与推理</p>
+          </div>
+          <!-- 教育大模型 -->
+          <div class="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 border border-gray-100 group">
+            <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-emerald-50 transition-colors">
+              🤖
+            </div>
+            <h3 class="font-bold text-lg mb-2 text-slate-700">教育大模型</h3>
+            <p class="text-slate-400 text-sm">LLM 微调与教育场景融合</p>
+          </div>
+          <!-- 联邦学习 -->
+          <div class="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 border border-gray-100 group">
+            <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-rose-50 transition-colors">
+              🔒
+            </div>
+            <h3 class="font-bold text-lg mb-2 text-slate-700">联邦学习</h3>
+            <p class="text-slate-400 text-sm">隐私保护的分布式学习</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 项目展示 -->
+    <section class="py-16 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-4 text-slate-800">精选项目</h2>
+        <p class="text-slate-400 text-center mb-12">从理论到实践的持续探索</p>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- 项目卡片 1 -->
+          <div class="group relative overflow-hidden bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100">
+            <div class="h-48 bg-gradient-to-br from-slate-100 to-stone-200 relative">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-20 h-20 bg-white/50 backdrop-blur rounded-2xl flex items-center justify-center text-4xl shadow-sm">
+                  📚
+                </div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur rounded-full text-sm font-medium text-slate-600">
+              ⭐ 128
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-slate-700 group-hover:text-slate-900 transition-colors">edu-kt-demo</h3>
+              <p class="text-slate-400 mb-4 leading-relaxed">基于知识追踪与知识图谱的智能教育系统，支持多学科自适应学习路径推荐</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-sm rounded-full">Python</span>
+                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-sm rounded-full">PyTorch</span>
+                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-sm rounded-full">FastAPI</span>
+              </div>
+            </div>
+          </div>
+          <!-- 项目卡片 2 -->
+          <div class="group relative overflow-hidden bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100">
+            <div class="h-48 bg-gradient-to-br from-emerald-50 to-teal-100 relative">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-20 h-20 bg-white/50 backdrop-blur rounded-2xl flex items-center justify-center text-4xl shadow-sm">
+                  🔬
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-slate-700 group-hover:text-slate-900 transition-colors">AI 教育研究系列</h3>
+              <p class="text-slate-400 mb-4 leading-relaxed">涵盖知识追踪算法、知识图谱构建、教育大模型融合等前沿技术的深度研究</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-emerald-50 text-emerald-600 text-sm rounded-full">LLM</span>
+                <span class="px-3 py-1 bg-emerald-50 text-emerald-600 text-sm rounded-full">Research</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 技能展示 -->
+    <section class="py-16 px-6 bg-white/50">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12 text-slate-800">技术栈</h2>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-slate-600 font-medium">Python / PyTorch</span>
+              <span class="text-slate-400">95%</span>
+            </div>
+            <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-slate-400 to-slate-600 rounded-full" style="width: 95%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-slate-600 font-medium">知识图谱 / Neo4j</span>
+              <span class="text-slate-400">90%</span>
+            </div>
+            <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full" style="width: 90%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-slate-600 font-medium">LLM / Transformer</span>
+              <span class="text-slate-400">85%</span>
+            </div>
+            <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-amber-400 to-amber-600 rounded-full" style="width: 85%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-slate-600 font-medium">FastAPI / Docker</span>
+              <span class="text-slate-400">80%</span>
+            </div>
+            <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-slate-400 to-stone-500 rounded-full" style="width: 80%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="py-12 px-6 bg-slate-800 text-white">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="flex justify-center gap-6 mb-6">
+          <a href="#" class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center hover:bg-slate-600 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+        <p class="text-slate-400">© 2026 范俊峰</p>
+      </div>
+    </footer>
+  </div>
+</Layout>
