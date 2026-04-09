@@ -1,6 +1,6 @@
 ---
 title: 'Sora落幕：OpenAI用15个月讲完的故事'
-description: '2026年3月24日，星期二。OpenAI在社交平台X上发了一条简短的帖子："We're saying goodbye to Sora." 没有发布会，没有告别演讲，没有给出任何理由。曾经被誉为"颠覆好莱坞"的AI视频生成产品，就这样悄然落幕。'
+description: '2026年3月24日，OpenAI宣布关闭Sora。曾经的颠覆好莱坞的AI视频生成产品，悄然落幕。'
 date: '2026-03-26'
 tags: ['Sora', 'OpenAI']
 ---
