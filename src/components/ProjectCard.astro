@@ -10,41 +10,35 @@ interface Props {
 const { title, description, tech, link, stats } = Astro.props
 ---
 
-<a href={link} target={link.startsWith('http') ? '_blank' : undefined} rel={link.startsWith('http') ? 'noopener' : undefined} class="block p-6 bg-slate-50 dark:bg-slate-800 rounded-xl card-hover border border-slate-100 dark:border-slate-700 group">
-  <div class="flex items-start justify-between mb-4">
-    <div class="w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors">
-      <svg class="w-6 h-6 text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-      </svg>
+<a href={link} target={link.startsWith('http') ? '_blank' : undefined} rel={link.startsWith('http') ? 'noopener' : undefined} class="block overflow-hidden bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100 group">
+  <div class="h-32 bg-gradient-to-br from-slate-100 to-stone-200 relative flex items-center justify-center">
+    <div class="w-16 h-16 bg-white/60 backdrop-blur rounded-2xl flex items-center justify-center text-3xl shadow-sm">
+      📚
     </div>
     {stats && stats.stars > 0 && (
-      <div class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
-        <span class="flex items-center gap-1">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-          {stats.stars}
-        </span>
-        <span class="flex items-center gap-1">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6z"/>
-          </svg>
-          {stats.forks}
-        </span>
+      <div class="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur rounded-full text-sm font-medium text-slate-600">
+        ⭐ {stats.stars}
       </div>
     )}
   </div>
-  <h3 class="text-lg font-semibold text-slate-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-    {title}
-  </h3>
-  <p class="text-slate-600 dark:text-slate-300 text-sm mb-4 line-clamp-2">
-    {description}
-  </p>
-  <div class="flex flex-wrap gap-2">
-    {tech.map((t) => (
-      <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded">
-        {t}
-      </span>
-    ))}
+  <div class="p-6">
+    <h3 class="text-xl font-bold mb-2 text-slate-700 group-hover:text-slate-900 transition-colors">
+      {title}
+    </h3>
+    <p class="text-slate-400 mb-4 leading-relaxed line-clamp-2">
+      {description}
+    </p>
+    <div class="flex flex-wrap gap-2">
+      {tech.slice(0, 4).map((t) => (
+        <span class="px-3 py-1 bg-slate-100 text-slate-600 text-sm rounded-full">
+          {t}
+        </span>
+      ))}
+      {tech.length > 4 && (
+        <span class="px-3 py-1 bg-slate-100 text-slate-500 text-sm rounded-full">
+          +{tech.length - 4}
+        </span>
+      )}
+    </div>
   </div>
 </a>
