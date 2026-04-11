@@ -6,52 +6,144 @@ import { getCollection } from 'astro:content'
 const posts = await getCollection('blog')
 const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 
-// 获取所有标签
-const allTags = [...new Set(sortedPosts.flatMap((post) => post.data.tags || []))]
+// 获取所有标签及其数量
+const tagCounts = new Map<string, number>()
+sortedPosts.forEach((post) => {
+  ;(post.data.tags || []).forEach((tag) => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1)
+  })
+})
+
+const allTags = [...tagCounts.keys()]
 const categories = ['全部', ...allTags]
 ---
 
 <Layout title="博客 | 范俊峰" description="范俊峰的 AI 教育技术博客，包含行业洞察与技术思考">
-    
-    <!-- Hero -->
-    <section class="py-20 px-6">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-4xl font-bold mb-4 text-slate-800">
-          博客
-        </h1>
-        <p class="text-xl text-slate-500">
-          AI 行业洞察与技术思考
-        </p>
-      </div>
-    </section>
 
-    <!-- 分类筛选 -->
-    <section class="py-8 px-6 border-b border-gray-100 bg-white/50 sticky top-16 backdrop-blur-md z-40">
-      <div class="max-w-5xl mx-auto">
-        <div class="flex flex-wrap gap-2 justify-center">
-          {categories.map((cat, index) => (
-            <button class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${index === 0 ? 'bg-slate-700 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
+  <!-- Hero -->
+  <section class="py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl font-bold mb-4 text-slate-800">
+        博客
+      </h1>
+      <p class="text-xl text-slate-500">
+        AI 行业洞察与技术思考
+      </p>
+    </div>
+  </section>
 
-    <!-- 文章列表 -->
-    <section class="py-16 px-6">
-      <div class="max-w-5xl mx-auto">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sortedPosts.map((post) => (
-            <BlogCard 
+  <!-- 分类筛选 -->
+  <section class="py-8 px-6 border-b border-gray-100 bg-white/50 sticky top-16 backdrop-blur-md z-40">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-wrap gap-2 justify-center" id="tag-filters">
+        {categories.map((cat, index) => (
+          <button
+            class={`tag-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              index === 0
+                ? 'bg-slate-700 text-white shadow-md'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:shadow-sm'
+            }`}
+            data-tag={cat}
+            data-count={cat === '全部' ? sortedPosts.length : (tagCounts.get(cat) || 0)}
+          >
+            {cat}
+            <span class={`ml-1.5 text-xs ${index === 0 ? 'opacity-70' : 'opacity-60'}`}>
+              ({cat === '全部' ? sortedPosts.length : (tagCounts.get(cat) || 0)})
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 文章列表 -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="posts-grid">
+        {sortedPosts.map((post) => (
+          <div class="post-card" data-tags={JSON.stringify(post.data.tags || [])}>
+            <BlogCard
               title={post.data.title}
               description={post.data.description}
               date={post.data.date.toISOString().split('T')[0]}
               tags={post.data.tags || []}
               link={`/blog/${post.id}`}
             />
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+
+      <!-- 空状态 -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <div class="text-6xl mb-4">🔍</div>
+        <p class="text-slate-500 text-lg">暂无相关文章</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // 标签筛选功能
+    const tagButtons = document.querySelectorAll('.tag-btn')
+    const postCards = document.querySelectorAll('.post-card')
+    const emptyState = document.getElementById('empty-state')
+    const postsGrid = document.getElementById('posts-grid')
+
+    let currentTag = '全部'
+
+    tagButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tag = btn.getAttribute('data-tag')
+
+        // 更新按钮样式
+        tagButtons.forEach((b) => {
+          if (b.getAttribute('data-tag') === tag) {
+            b.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200')
+            b.classList.add('bg-slate-700', 'text-white', 'shadow-md')
+          } else {
+            b.classList.remove('bg-slate-700', 'text-white', 'shadow-md')
+            b.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200')
+          }
+        })
+
+        currentTag = tag
+
+        // 筛选文章
+        let visibleCount = 0
+        postCards.forEach((card) => {
+          const tags = JSON.parse(card.getAttribute('data-tags') || '[]')
+
+          if (tag === '全部' || tags.includes(tag)) {
+            card.classList.remove('hidden')
+            card.classList.add('animate-fadeIn')
+            visibleCount++
+          } else {
+            card.classList.add('hidden')
+            card.classList.remove('animate-fadeIn')
+          }
+        })
+
+        // 显示空状态
+        if (visibleCount === 0) {
+          emptyState?.classList.remove('hidden')
+          postsGrid?.classList.add('hidden')
+        } else {
+          emptyState?.classList.add('hidden')
+          postsGrid?.classList.remove('hidden')
+        }
+      })
+    })
+
+    // 添加淡入动画样式
+    const style = document.createElement('style')
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fadeIn {
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+    `
+    document.head.appendChild(style)
+  </script>
 </Layout>

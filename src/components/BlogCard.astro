@@ -13,12 +13,112 @@ function formatDate(dateStr: string) {
   const date = new Date(dateStr)
   return date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'short', day: 'numeric' })
 }
+
+// 基于标题生成唯一的图案种子
+function hashCode(str: string): number {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash
+  }
+  return Math.abs(hash)
+}
+
+// 预定义的渐变色方案
+const gradients = [
+  'from-indigo-300 to-blue-400',
+  'from-purple-300 to-pink-400',
+  'from-teal-300 to-cyan-400',
+  'from-orange-300 to-red-400',
+  'from-green-300 to-emerald-400',
+  'from-yellow-300 to-orange-400',
+  'from-rose-300 to-pink-400',
+  'from-cyan-300 to-blue-400',
+  'from-violet-300 to-purple-400',
+  'from-fuchsia-300 to-pink-400',
+]
+
+// 几何图案类型
+const patterns = ['circles', 'lines', 'triangles', 'mixed', 'dots', 'waves']
+
+// 根据标题哈希选择图案和配色
+const seed = hashCode(title)
+const gradient = gradients[seed % gradients.length]
+const pattern = patterns[seed % patterns.length]
+
+// 生成图案元素
+function getPatternSvg(p: string, s: number) {
+  const seed1 = s % 100
+  const seed2 = (s * 7) % 100
+  const seed3 = (s * 13) % 100
+
+  if (p === 'circles') {
+    return `
+      <circle cx="${10 + seed1 % 30}%" cy="${20 + seed2 % 40}%" r="${15 + seed3 % 20}%" fill="white" opacity="0.25"/>
+      <circle cx="${60 + seed1 % 25}%" cy="${30 + seed2 % 35}%" r="${10 + seed3 % 15}%" fill="white" opacity="0.2"/>
+      <circle cx="${30 + seed2 % 40}%" cy="${60 + seed1 % 25}%" r="${20 + seed3 % 10}%" fill="white" opacity="0.15"/>
+    `
+  } else if (p === 'lines') {
+    return `
+      <line x1="${seed1 % 80}%" y1="${seed2 % 50}%" x2="${50 + seed3 % 50}%" y2="${100 - seed1 % 50}%" stroke="white" stroke-width="2" opacity="0.3"/>
+      <line x1="${seed2 % 60}%" y1="${seed3 % 40}%" x2="${70 + seed1 % 30}%" y2="${100 - seed2 % 40}%" stroke="white" stroke-width="2" opacity="0.25"/>
+      <line x1="${seed3 % 70}%" y1="${seed1 % 60}%" x2="${40 + seed2 % 60}%" y2="${100 - seed3 % 30}%" stroke="white" stroke-width="2" opacity="0.2"/>
+    `
+  } else if (p === 'triangles') {
+    return `
+      <polygon points="${20 + seed1 % 30},${70 + seed2 % 20} ${40 + seed2 % 20},${30 + seed3 % 30} ${60 + seed3 % 20},${65 + seed1 % 25}" fill="white" opacity="0.2"/>
+      <polygon points="${60 + seed2 % 25},${50 + seed3 % 30} ${80 + seed3 % 15},${25 + seed1 % 25} ${85 + seed1 % 10},${55 + seed2 % 30}" fill="white" opacity="0.15"/>
+    `
+  } else if (p === 'dots') {
+    return `
+      <circle cx="${10 + seed1 % 20}%" cy="${20 + seed2 % 20}%" r="4" fill="white" opacity="0.3"/>
+      <circle cx="${30 + seed2 % 15}%" cy="${40 + seed3 % 15}%" r="3" fill="white" opacity="0.25"/>
+      <circle cx="${50 + seed3 % 20}%" cy="${25 + seed1 % 20}%" r="5" fill="white" opacity="0.2"/>
+      <circle cx="${70 + seed1 % 15}%" cy="${55 + seed2 % 20}%" r="4" fill="white" opacity="0.3"/>
+      <circle cx="${85 + seed2 % 10}%" cy="${35 + seed3 % 25}%" r="3" fill="white" opacity="0.25"/>
+      <circle cx="${25 + seed3 % 25}%" cy="${70 + seed1 % 15}%" r="4" fill="white" opacity="0.2"/>
+      <circle cx="${55 + seed1 % 20}%" cy="${80 + seed2 % 15}%" r="3" fill="white" opacity="0.25"/>
+    `
+  } else if (p === 'waves') {
+    return `
+      <path d="M0,${40 + seed1 % 20} Q25,${30 + seed2 % 20} 50,${45 + seed3 % 15} T100,${40 + seed1 % 20} L100,100 L0,100 Z" fill="white" opacity="0.15"/>
+      <path d="M0,${55 + seed2 % 20} Q30,${45 + seed3 % 20} 60,${60 + seed1 % 15} T100,${55 + seed2 % 20} L100,100 L0,100 Z" fill="white" opacity="0.1"/>
+    `
+  } else {
+    // mixed
+    return `
+      <circle cx="${15 + seed1 % 25}%" cy="${25 + seed2 % 30}%" r="${10 + seed3 % 12}%" fill="white" opacity="0.25"/>
+      <circle cx="${70 + seed2 % 20}%" cy="${50 + seed3 % 25}%" r="${8 + seed1 % 10}%" fill="white" opacity="0.2"/>
+      <line x1="${seed3 % 60}%" y1="${seed1 % 40}%" x2="${50 + seed2 % 40}%" y2="${100 - seed3 % 40}%" stroke="white" stroke-width="2" opacity="0.25"/>
+      <circle cx="${45 + seed3 % 30}%" cy="${70 + seed1 % 20}%" r="${12 + seed2 % 8}%" fill="white" opacity="0.15"/>
+    `
+  }
+}
+
+const patternSvg = getPatternSvg(pattern, seed)
 ---
 
 <a href={link} class="block overflow-hidden bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 group">
-  <div class="h-24 bg-gradient-to-br from-slate-50 to-stone-100 flex items-center justify-center">
-    <div class="text-4xl opacity-60">📝</div>
+  <!-- 抽象几何图案头部 -->
+  <div class={`h-32 bg-gradient-to-br ${gradient} relative overflow-hidden`}>
+    <!-- SVG 几何图案 -->
+    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="grad-{seed}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:white;stop-opacity:0.3"/>
+          <stop offset="100%" style="stop-color:white;stop-opacity:0.1"/>
+        </linearGradient>
+      </defs>
+      <Fragment set:html={patternSvg} />
+    </svg>
+
+    <!-- 右上角装饰 -->
+    <div class="absolute top-3 right-3 w-16 h-16 border-2 border-white/20 rounded-full"></div>
+    <div class="absolute bottom-3 left-3 w-10 h-10 border border-white/15 rounded-full"></div>
   </div>
+
+  <!-- 文章信息 -->
   <div class="p-5">
     <div class="text-sm text-slate-400 mb-2">
       {formatDate(date)}
